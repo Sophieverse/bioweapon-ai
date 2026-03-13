@@ -20,6 +20,7 @@
       --text: #e8e8f0;
       --text-dim: #8888a0;
       --border: rgba(0,255,136,0.15);
+      --border-subtle: rgba(255,255,255,0.08);
       --card-bg: rgba(13,13,20,0.9);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +29,7 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
@@ -87,7 +88,7 @@
       color: var(--text-dim);
       max-width: 640px;
       margin: 0 auto 2.5rem;
-      line-height: 1.7;
+      line-height: 1.75;
     }
     .cta-btn {
       display: inline-block;
@@ -142,7 +143,7 @@
       color: var(--green);
       letter-spacing: 0.05em;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
     .nav-links a {
       color: var(--text-dim);
       text-decoration: none;
@@ -158,7 +159,7 @@
     .container { max-width: 1100px; margin: 0 auto; }
     .section-eyebrow {
       font-size: 0.75rem;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--green);
       margin-bottom: 1rem;
@@ -171,11 +172,11 @@
       letter-spacing: -0.02em;
     }
     .section-desc {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--text-dim);
       max-width: 680px;
       margin-bottom: 4rem;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     /* ─── REVEAL ANIMATION ─── */
@@ -210,12 +211,12 @@
     .stat-number.red { color: var(--red); }
     .stat-number.amber { color: var(--amber); }
     .stat-label {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 0.5rem;
+      letter-spacing: 0.03em;
+      margin-top: 0.6rem;
       display: block;
+      line-height: 1.5;
     }
 
     /* ─── PROBLEM SECTION ─── */
@@ -229,7 +230,7 @@
     @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
     .col-card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: 12px;
       padding: 2rem;
     }
@@ -244,19 +245,73 @@
       padding-left: 1.5rem;
       position: relative;
       color: var(--text-dim);
-      font-size: 0.95rem;
+      font-size: 1rem;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     .col-card li:last-child { border-bottom: none; }
     .col-card li::before { content: '→'; position: absolute; left: 0; color: var(--green); }
     .col-card.danger li::before { color: var(--red); }
 
+    /* ─── BARRIER COMPARISON TABLE ─── */
+    .barrier-visual {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin: 3rem 0;
+    }
+    .barrier-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.75rem;
+      text-align: center;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .barrier-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .barrier-table th {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .barrier-table th:first-child { text-align: left; color: var(--text-dim); }
+    .barrier-table th.col-before { color: var(--green); text-align: left; }
+    .barrier-table th.col-after { color: var(--red); text-align: left; }
+    .barrier-table td {
+      padding: 0.85rem 1.25rem;
+      font-size: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .barrier-table td:first-child {
+      font-weight: 600;
+      color: var(--text);
+      width: 22%;
+    }
+    .barrier-table td.col-before {
+      border-left: 4px solid rgba(0,255,136,0.4);
+      color: var(--text-dim);
+    }
+    .barrier-table td.col-after {
+      border-left: 4px solid rgba(255,51,51,0.4);
+      color: var(--text-dim);
+    }
+    @media (max-width: 640px) {
+      .barrier-table td:first-child { width: auto; display: none; }
+      .barrier-table th:first-child { display: none; }
+    }
+
     /* ─── TIMELINE / CASE STUDIES ─── */
     #cases { background: var(--bg2); }
     .case-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
     .case-tab {
       padding: 0.6rem 1.4rem;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       background: transparent;
       color: var(--text-dim);
       font-size: 0.85rem;
@@ -272,7 +327,7 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .case-card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: 12px;
       padding: 2.5rem;
       display: grid;
@@ -280,8 +335,8 @@
       gap: 2rem;
     }
     @media (max-width: 768px) { .case-card { grid-template-columns: 1fr; } }
-    .case-meta { border-right: 1px solid var(--border); padding-right: 2rem; }
-    @media (max-width: 768px) { .case-meta { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 2rem; } }
+    .case-meta { border-right: 1px solid var(--border-subtle); padding-right: 2rem; }
+    @media (max-width: 768px) { .case-meta { border-right: none; border-bottom: 1px solid var(--border-subtle); padding-right: 0; padding-bottom: 2rem; } }
     .case-year {
       font-size: 0.75rem;
       letter-spacing: 0.2em;
@@ -290,7 +345,7 @@
       margin-bottom: 0.5rem;
     }
     .case-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
-    .case-description { color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.7; font-size: 0.95rem; }
+    .case-description { color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.75; font-size: 1rem; }
     .case-result {
       display: inline-flex;
       align-items: center;
@@ -318,14 +373,12 @@
     .what-changed-item {
       display: flex;
       gap: 1rem;
-      padding: 1rem;
-      background: rgba(255,51,51,0.05);
-      border: 1px solid rgba(255,51,51,0.15);
-      border-radius: 8px;
-      margin-bottom: 0.75rem;
+      padding: 1rem 0 1rem 1rem;
+      border-left: 4px solid rgba(255,51,51,0.3);
+      margin-bottom: 1rem;
     }
     .what-changed-icon { font-size: 1.3rem; flex-shrink: 0; }
-    .what-changed-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+    .what-changed-text { font-size: 1rem; color: var(--text-dim); line-height: 1.75; }
     .what-changed-text strong { color: var(--text); }
     .death-toll {
       margin-top: 1.5rem;
@@ -341,27 +394,24 @@
     #multiplier { background: var(--bg); }
     .multiplier-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.75rem;
       margin-bottom: 3rem;
     }
     .multiplier-card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 1.8rem;
+      padding: 2.5rem;
       transition: border-color 0.2s, transform 0.2s;
     }
     .multiplier-card:hover { border-color: var(--green); transform: translateY(-4px); }
     .multiplier-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .multiplier-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .multiplier-body { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+    .multiplier-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .multiplier-body { color: var(--text-dim); font-size: 1rem; line-height: 1.75; }
     .multiplier-stat {
-      margin-top: 1rem;
-      padding: 0.75rem;
-      background: rgba(0,255,136,0.06);
-      border-radius: 6px;
-      font-size: 0.85rem;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
       color: var(--green);
       font-weight: 600;
     }
@@ -369,57 +419,57 @@
     .progress-label {
       display: flex;
       justify-content: space-between;
-      font-size: 0.85rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
     }
     .progress-label .val { color: var(--green); font-weight: 700; }
     .progress-bar-bg {
-      height: 8px;
+      height: 10px;
       background: rgba(255,255,255,0.08);
-      border-radius: 4px;
+      border-radius: 5px;
       overflow: hidden;
     }
     .progress-bar-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--green-dim), var(--green));
-      border-radius: 4px;
+      border-radius: 5px;
       width: 0;
       transition: width 1.5s ease;
     }
     .progress-bar-fill.red { background: linear-gradient(90deg, var(--red-dim), var(--red)); }
     .quote-block {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-left: 4px solid var(--green);
       border-radius: 0 12px 12px 0;
       padding: 2rem;
       margin: 1.5rem 0;
     }
-    .quote-text { font-size: 1.1rem; font-style: italic; line-height: 1.7; margin-bottom: 1rem; }
+    .quote-text { font-size: 1.1rem; font-style: italic; line-height: 1.75; margin-bottom: 1rem; }
     .quote-author { font-size: 0.85rem; color: var(--green); font-weight: 600; letter-spacing: 0.05em; }
 
     /* ─── THREAT MATRIX ─── */
     #threats { background: var(--bg2); }
     .threat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.75rem;
     }
     .threat-card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
       transition: all 0.25s;
     }
-    .threat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    .threat-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
     .threat-header {
       padding: 1.5rem;
       display: flex;
       align-items: center;
       gap: 1rem;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-subtle);
     }
     .threat-emoji { font-size: 2rem; }
     .threat-name { font-size: 1.1rem; font-weight: 700; }
@@ -442,31 +492,31 @@
     .threat-stat { text-align: center; flex: 1; }
     .threat-stat-val { font-size: 1.3rem; font-weight: 800; color: var(--red); }
     .threat-stat-key { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
-    .threat-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
+    .threat-desc { font-size: 1rem; color: var(--text-dim); line-height: 1.75; }
     .threat-expand { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
     .threat-card.open .threat-expand { max-height: 300px; }
-    .threat-expand-inner { padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem; }
-    .threat-expand-inner p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 0.5rem; }
+    .threat-expand-inner { padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border-subtle); padding-top: 1rem; }
+    .threat-expand-inner p { font-size: 1rem; color: var(--text-dim); line-height: 1.75; margin-bottom: 0.5rem; }
 
     /* ─── EXPERTS SECTION ─── */
     #experts { background: var(--bg); }
     .experts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.75rem;
     }
     .expert-card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 2rem;
+      padding: 2.5rem;
       transition: border-color 0.2s;
     }
     .expert-card:hover { border-color: var(--green); }
-    .expert-quote { font-size: 1rem; font-style: italic; line-height: 1.7; margin-bottom: 1.5rem; color: var(--text); }
+    .expert-quote { font-size: 1rem; font-style: italic; line-height: 1.75; margin-bottom: 1.5rem; color: var(--text); }
     .expert-quote::before { content: '"'; color: var(--green); font-size: 2rem; line-height: 0; vertical-align: -0.5rem; margin-right: 0.2rem; }
     .expert-name { font-weight: 700; font-size: 0.9rem; color: var(--green); }
-    .expert-role { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.2rem; }
+    .expert-role { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.25rem; }
 
     /* ─── URGENCY SECTION ─── */
     #urgency { background: var(--bg2); }
@@ -474,8 +524,8 @@
     .urgency-item {
       display: flex;
       gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border-subtle);
     }
     .urgency-item:last-child { border-bottom: none; }
     .urgency-num {
@@ -487,34 +537,32 @@
       width: 3rem;
     }
     .urgency-content {}
-    .urgency-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .urgency-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+    .urgency-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .urgency-desc { font-size: 1rem; color: var(--text-dim); line-height: 1.75; }
 
     /* ─── WHAT YOU CAN DO ─── */
     #action {
       background: var(--bg);
-      text-align: center;
     }
     .action-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
+      gap: 1.75rem;
       margin-top: 3rem;
-      text-align: left;
     }
     .action-card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 2rem;
+      padding: 2.5rem;
     }
     .action-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .action-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .action-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
+    .action-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .action-desc { font-size: 1rem; color: var(--text-dim); line-height: 1.75; }
     .action-link {
       display: inline-block;
       margin-top: 1rem;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--green);
       text-decoration: none;
       text-transform: uppercase;
@@ -532,7 +580,7 @@
       text-align: center;
     }
     .footer-logo { font-size: 1.5rem; font-weight: 900; color: var(--green); margin-bottom: 1rem; }
-    .footer-note { font-size: 0.8rem; color: var(--text-dim); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+    .footer-note { font-size: 0.8rem; color: var(--text-dim); max-width: 600px; margin: 0 auto; line-height: 1.75; }
     .footer-note a { color: var(--green); }
 
     /* ─── MOBILE NAV ─── */
@@ -542,82 +590,6 @@
 
     /* ─── COUNTER ANIMATION ─── */
     .count-up { display: inline-block; }
-
-    /* ─── GLITCH TEXT ─── */
-    .glitch {
-      position: relative;
-    }
-    .glitch::before, .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-    }
-    .glitch::before {
-      color: var(--red);
-      animation: glitch1 3s infinite;
-      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-    }
-    .glitch::after {
-      color: #00aaff;
-      animation: glitch2 3s infinite;
-      clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
-    }
-    @keyframes glitch1 {
-      0%,95%,100% { transform: translate(0); }
-      96% { transform: translate(-3px, 1px); }
-      97% { transform: translate(3px, -1px); }
-      98% { transform: translate(-3px, 0); }
-    }
-    @keyframes glitch2 {
-      0%,95%,100% { transform: translate(0); }
-      96% { transform: translate(3px, 1px); }
-      97% { transform: translate(-3px, -1px); }
-      98% { transform: translate(3px, 0); }
-    }
-
-    /* ─── BARRIER VISUALIZER ─── */
-    .barrier-visual {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      margin: 3rem 0;
-    }
-    .barrier-title { font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; color: var(--text-dim); letter-spacing: 0.05em; }
-    .barrier-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-    .barrier-label { width: 180px; font-size: 0.85rem; color: var(--text-dim); text-align: right; flex-shrink: 0; }
-    .barrier-track { flex: 1; height: 10px; background: rgba(255,255,255,0.06); border-radius: 5px; position: relative; overflow: visible; }
-    .barrier-before {
-      height: 100%;
-      border-radius: 5px;
-      background: linear-gradient(90deg, #1a4433, var(--green));
-      position: absolute;
-      top: 0; left: 0;
-      transition: width 1.5s ease;
-      width: 0;
-    }
-    .barrier-after {
-      height: 100%;
-      border-radius: 5px;
-      background: linear-gradient(90deg, #4a0f0f, var(--red));
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      transition: width 1.5s ease 0.3s, opacity 0.5s ease 0.3s;
-      width: 0;
-    }
-    .barrier-legend { display: flex; gap: 2rem; justify-content: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-dim); }
-    .barrier-legend span { display: flex; align-items: center; gap: 0.4rem; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .dot.green { background: var(--green); }
-    .dot.red { background: var(--red); }
-    @media (max-width: 600px) { .barrier-label { width: 100px; font-size: 0.75rem; } }
   </style>
 </head>
 <body>
@@ -642,7 +614,7 @@
     <span class="biohazard-symbol">☣</span>
     <p class="hero-eyebrow">An Urgent Briefing on Existential Risk</p>
     <h1 class="hero-title">
-      <span class="glitch" data-text="AI is making">AI is making</span><br>
+      AI is making<br>
       <span class="highlight">biological weapons</span><br>
       accessible to <span class="danger">anyone.</span>
     </h1>
@@ -662,19 +634,19 @@
     <div class="stats-grid">
       <div class="stat-item reveal">
         <span class="stat-number green count-up" data-target="94">0</span><span class="stat-number green">%</span>
-        <span class="stat-label">of virology experts outperformed by AI on lab protocol questions</span>
+        <span class="stat-label">Of virology experts outperformed by AI on lab protocol questions</span>
       </div>
       <div class="stat-item reveal">
         <span class="stat-number amber count-up" data-target="253">0</span><span class="stat-number amber">%</span>
-        <span class="stat-label">performance uplift AI gives non-experts in bioweapons acquisition</span>
+        <span class="stat-label">Performance uplift AI gives non-experts in bioweapons acquisition</span>
       </div>
       <div class="stat-item reveal">
         <span class="stat-number red count-up" data-target="80">0</span><span class="stat-number red">%</span>
-        <span class="stat-label">accuracy of LLMs on bioweapon-release questions (up from 15% in 2023)</span>
+        <span class="stat-label">Accuracy of LLMs on bioweapon-release questions (up from 15% in 2023)</span>
       </div>
       <div class="stat-item reveal">
         <span class="stat-number red">3M</span>
-        <span class="stat-label">potential casualties from a single aerosolized anthrax attack on a US city</span>
+        <span class="stat-label">Potential casualties from a single aerosolized anthrax attack on a US city</span>
       </div>
     </div>
   </div>
@@ -719,46 +691,43 @@
     </div>
 
     <div class="barrier-visual reveal">
-      <div class="barrier-title">HOW AI CHANGES THE BARRIER TO CATASTROPHIC HARM — REQUIRED EXPERTISE LEVEL</div>
-      <div class="barrier-row">
-        <div class="barrier-label">Pathogen Selection</div>
-        <div class="barrier-track">
-          <div class="barrier-before" data-width="80"></div>
-          <div class="barrier-after" data-width="15"></div>
-        </div>
-      </div>
-      <div class="barrier-row">
-        <div class="barrier-label">Acquisition / Synthesis</div>
-        <div class="barrier-track">
-          <div class="barrier-before" data-width="90"></div>
-          <div class="barrier-after" data-width="35"></div>
-        </div>
-      </div>
-      <div class="barrier-row">
-        <div class="barrier-label">Weaponization</div>
-        <div class="barrier-track">
-          <div class="barrier-before" data-width="95"></div>
-          <div class="barrier-after" data-width="40"></div>
-        </div>
-      </div>
-      <div class="barrier-row">
-        <div class="barrier-label">Dispersal Method</div>
-        <div class="barrier-track">
-          <div class="barrier-before" data-width="75"></div>
-          <div class="barrier-after" data-width="20"></div>
-        </div>
-      </div>
-      <div class="barrier-row">
-        <div class="barrier-label">Evading Detection</div>
-        <div class="barrier-track">
-          <div class="barrier-before" data-width="60"></div>
-          <div class="barrier-after" data-width="10"></div>
-        </div>
-      </div>
-      <div class="barrier-legend">
-        <span><span class="dot green"></span> Before AI (high expertise required)</span>
-        <span><span class="dot red"></span> After AI (dramatically reduced)</span>
-      </div>
+      <div class="barrier-title">How AI Changes the Barrier to Catastrophic Harm — Required Expertise Level</div>
+      <table class="barrier-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-before">Before AI</th>
+            <th class="col-after">After AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pathogen Selection</td>
+            <td class="col-before">High expertise required</td>
+            <td class="col-after">AI-guided, accessible</td>
+          </tr>
+          <tr>
+            <td>Acquisition / Synthesis</td>
+            <td class="col-before">High expertise required</td>
+            <td class="col-after">AI-guided, accessible</td>
+          </tr>
+          <tr>
+            <td>Weaponization</td>
+            <td class="col-before">High expertise required</td>
+            <td class="col-after">AI-guided, accessible</td>
+          </tr>
+          <tr>
+            <td>Dispersal Method</td>
+            <td class="col-before">High expertise required</td>
+            <td class="col-after">AI-guided, accessible</td>
+          </tr>
+          <tr>
+            <td>Evading Detection</td>
+            <td class="col-before">High expertise required</td>
+            <td class="col-after">AI-guided, accessible</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -1500,26 +1469,6 @@
     });
   }, { threshold: 0.2 });
   document.querySelectorAll('.progress-block').forEach(el => barObserver.observe(el));
-
-  // ─── BARRIER BARS ───
-  const barrierObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.barrier-before').forEach(b => {
-          b.style.width = b.dataset.width + '%';
-        });
-        setTimeout(() => {
-          e.target.querySelectorAll('.barrier-after').forEach(b => {
-            b.style.width = b.dataset.width + '%';
-            b.style.opacity = 0.85;
-          });
-        }, 800);
-        barrierObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  const barrierVisual = document.querySelector('.barrier-visual');
-  if (barrierVisual) barrierObserver.observe(barrierVisual);
 
   // ─── CASE STUDY TABS ───
   function showCase(id) {
