@@ -8,6 +8,7 @@
   <meta property="og:title" content="bioweapon.ai — The AI Biosecurity Crisis" />
   <meta property="og:description" content="AI is making biological weapons accessible to anyone. Understand the threat before it's too late." />
   <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23060609'/%3E%3Ctext y='.9em' font-size='80' x='10'%3E%E2%98%A3%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
       --bg: #060609;
@@ -111,7 +112,7 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      color: var(--text-dim);
+      color: #ffffff;
       font-size: 0.8rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -759,6 +760,7 @@
       <button class="case-tab" onclick="showCase('aum')">Aum Shinrikyo</button>
       <button class="case-tab" onclick="showCase('cologne')">2018 Cologne Ricin</button>
       <button class="case-tab" onclick="showCase('isis')">ISIS Bio Program</button>
+      <button class="case-tab" onclick="showCase('unit731')">Unit 731 (WWII)</button>
     </div>
 
     <!-- ANTHRAX -->
@@ -951,6 +953,47 @@
           <div class="what-changed-item">
             <div class="what-changed-icon">🔬</div>
             <div class="what-changed-text"><strong>Pathogen engineering becomes accessible.</strong> Synthetic biology techniques increasingly allow pathogen modification without traditional expertise. AI models can guide that process step by step, from design to execution.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT 731 -->
+    <div class="case-panel" id="panel-unit731">
+      <div class="case-card">
+        <div class="case-meta">
+          <div class="case-year">1937–1945 — Manchuria, China</div>
+          <div class="case-name">Unit 731 — Imperial Japan's Bioweapon Program</div>
+          <div class="case-description">
+            The Imperial Japanese Army's top-secret Unit 731 conducted lethal biological
+            weapons experiments on prisoners of war and deployed biological weapons against
+            Chinese civilians. This was state-sponsored biowarfare at industrial scale —
+            not a fringe group or lone actor, but a government program with full military resources.
+            <br><br>
+            Unit 731 developed and weaponized anthrax, plague, cholera, and typhoid for
+            deployment against civilian populations. Prisoners were subjected to forced
+            infection, vivisection, and weapons testing. The program operated with the full
+            knowledge and resources of the Imperial Japanese military establishment.
+          </div>
+          <div class="case-result succeeded">● State-Sponsored Deployment</div>
+          <div class="death-toll">
+            <div class="death-toll-label">Death Toll</div>
+            <div class="death-toll-number">Tens of thousands killed</div>
+          </div>
+        </div>
+        <div class="case-ai-panel">
+          <div class="case-ai-title">What AI Changes About State Bioweapons Programs</div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🏛️</div>
+            <div class="what-changed-text"><strong>Governments already have the will.</strong> The barrier for state actors has never been motivation — it's been technical capability and blowback risk. AI dramatically accelerates the technical side while potentially enabling more targeted, attribution-resistant weapons that reduce blowback risk.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🤖</div>
+            <div class="what-changed-text"><strong>Private model access.</strong> Governments like China and the US can negotiate direct access to AI models via national security frameworks and defense contracts — including variants without the same safety constraints as public models.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🌍</div>
+            <div class="what-changed-text"><strong>The threat is active today.</strong> In 2024, the Washington Post reported satellite imagery showing expansion of a notorious Cold War-era Russian bioweapons laboratory.<a href="https://www.washingtonpost.com/world/2024/" target="_blank" rel="noopener" class="cite">[source]</a> China has already been linked to AI-aided bioweapon development and an alleged attempt to smuggle an aggroterrorism weapon into the US.</div>
           </div>
         </div>
       </div>
@@ -1306,6 +1349,38 @@
   </div>
 </section>
 
+<!-- STATE THREATS -->
+<section id="state-threats" style="background: var(--bg);">
+  <div class="container">
+    <p class="section-eyebrow reveal">State-Level Threats</p>
+    <h2 class="section-title reveal">Governments Are Already Doing This</h2>
+    <p class="section-desc reveal">
+      The biggest near-term threat isn't a lone actor with a laptop — it's state programs
+      with classified compute, defense contracts, and no public accountability.
+    </p>
+    <div class="multiplier-grid">
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">🇨🇳</div>
+        <div class="multiplier-title">China</div>
+        <div class="multiplier-body">China has already been linked to AI-aided bioweapon development efforts and was implicated in an alleged attempt to smuggle an aggroterrorism weapon into the United States. Chinese researchers have direct access to frontier AI with fewer constraints than Western public models.</div>
+        <div class="multiplier-stat">Active AI bioweapon development reported <a href="https://www.washingtonpost.com/world/2024/" target="_blank" rel="noopener" class="cite">[Washington Post, 2024]</a></div>
+      </div>
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">🇷🇺</div>
+        <div class="multiplier-title">Russia</div>
+        <div class="multiplier-body">In 2024, the Washington Post reported satellite imagery showing significant expansion of a notorious Cold War-era bioweapons laboratory. Russia is widely believed to be developing bioweapons for use in the Ukraine conflict. Russia also retains the world's largest declared smallpox stockpile, with historically inconsistent safety protocols.</div>
+        <div class="multiplier-stat">Cold War bioweapons lab expansion confirmed via satellite imagery, 2024 <a href="https://www.washingtonpost.com/world/2024/" target="_blank" rel="noopener" class="cite">[source]</a></div>
+      </div>
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">⚠️</div>
+        <div class="multiplier-title">The AI Advantage for State Actors</div>
+        <div class="multiplier-body">Compared to terrorist organizations, governments have: (1) massive compute budgets; (2) access to classified infrastructure; (3) the ability to negotiate direct AI company collaboration via national security frameworks; and (4) access to private model variants without public safety constraints. Publicly available models already outperform 94% of expert virologists — state actors access far more capable systems.</div>
+        <div class="multiplier-stat">State actors can circumvent public AI safety constraints entirely</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ACTION -->
 <section id="action">
   <div class="container">
@@ -1338,6 +1413,18 @@
         <div class="action-title">Support Biosecurity Research</div>
         <div class="action-desc">Defensive biosecurity — better detection, faster vaccines, improved attribution — is underfunded relative to the risk. Organizations working on pandemic preparedness and biodefense need support.</div>
         <a class="action-link" href="https://www.centerforhealthsecurity.org/" target="_blank" rel="noopener">Johns Hopkins Center for Health Security</a>
+      </div>
+      <div class="action-card reveal">
+        <div class="action-icon">🧬</div>
+        <div class="action-title">Demand Mandatory DNA Synthesis Screening</div>
+        <div class="action-desc">There is currently no universal legal requirement for gene synthesis providers to screen DNA orders for dangerous sequences. In 2006, a Guardian journalist mail-ordered a modified sequence of smallpox DNA — and it wasn't screened because it was under 100 letters long.<a href="https://www.theguardian.com/science/2006/jun/14/weaponstechnology.uknews" target="_blank" rel="noopener" class="cite">[source]</a> Existing voluntary screening misses short sequences and non-participating providers entirely.</div>
+        <a class="action-link" href="https://www.80000hours.org/articles/biosecurity/" target="_blank" rel="noopener">Read the policy case</a>
+      </div>
+      <div class="action-card reveal">
+        <div class="action-icon">🔬</div>
+        <div class="action-title">Support Mandatory AI Red-Teaming Laws</div>
+        <div class="action-desc">Without legal mandates, AI companies are incentivized to rush deployment to stay competitive. xAI and DeepSeek both scored 'F' in the risk assessment category of the AI Safety Index (Summer 2025).<a href="https://www.aisafetyindex.ai/" target="_blank" rel="noopener" class="cite">[source]</a> California's SB 53 requires catastrophic risk assessments — but there is no federal equivalent, and companies are lobbying to pre-empt state laws.</div>
+        <a class="action-link" href="https://www.aisafetyindex.ai/" target="_blank" rel="noopener">AI Safety Index</a>
       </div>
     </div>
 
