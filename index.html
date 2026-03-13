@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bioweapon.ai — The AI Biosecurity Crisis</title>
+  <meta name="description" content="Artificial intelligence is quietly eliminating the barriers that have kept bioterrorism in check. Here's what that means for humanity." />
+  <meta property="og:title" content="bioweapon.ai — The AI Biosecurity Crisis" />
+  <meta property="og:description" content="AI is making biological weapons accessible to anyone. Understand the threat before it's too late." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #060609;
+      --bg2: #0d0d14;
+      --green: #00ff88;
+      --green-dim: #00cc6a;
+      --red: #ff3333;
+      --red-dim: #cc2222;
+      --amber: #ffaa00;
+      --text: #e8e8f0;
+      --text-dim: #8888a0;
+      --border: rgba(0,255,136,0.15);
+      --card-bg: rgba(13,13,20,0.9);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    #particle-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.45;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
+    .biohazard-symbol {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 1rem;
+      animation: pulse-glow 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%,100% { text-shadow: 0 0 20px var(--green), 0 0 40px var(--green); filter: brightness(1); }
+      50% { text-shadow: 0 0 40px var(--green), 0 0 80px var(--green), 0 0 120px var(--green); filter: brightness(1.3); }
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-title .highlight { color: var(--green); }
+    .hero-title .danger { color: var(--red); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text-dim);
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--green);
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .cta-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,255,136,0.4); }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      z-index: 1;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(6,6,9,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-desc {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 680px;
+      margin-bottom: 4rem;
+      line-height: 1.7;
+    }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── STATS BAR ─── */
+    #stats-bar {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-item {}
+    .stat-number {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      display: block;
+    }
+    .stat-number.red { color: var(--red); }
+    .stat-number.amber { color: var(--amber); }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    /* ─── PROBLEM SECTION ─── */
+    #problem { background: var(--bg); }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+    .col-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .col-card.danger { border-color: rgba(255,51,51,0.3); }
+    .col-card-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .col-card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; }
+    .col-card.danger .col-card-title { color: var(--red); }
+    .col-card-title.green { color: var(--green); }
+    .col-card ul { list-style: none; }
+    .col-card li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .col-card li:last-child { border-bottom: none; }
+    .col-card li::before { content: '→'; position: absolute; left: 0; color: var(--green); }
+    .col-card.danger li::before { color: var(--red); }
+
+    /* ─── TIMELINE / CASE STUDIES ─── */
+    #cases { background: var(--bg2); }
+    .case-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .case-tab {
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .case-tab:hover { border-color: var(--green); color: var(--text); }
+    .case-tab.active { background: var(--green); color: #000; border-color: var(--green); font-weight: 700; }
+    .case-panel { display: none; }
+    .case-panel.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .case-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) { .case-card { grid-template-columns: 1fr; } }
+    .case-meta { border-right: 1px solid var(--border); padding-right: 2rem; }
+    @media (max-width: 768px) { .case-meta { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 2rem; } }
+    .case-year {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+    .case-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+    .case-description { color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.7; font-size: 0.95rem; }
+    .case-result {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .case-result.partial { background: rgba(255,170,0,0.1); border: 1px solid rgba(255,170,0,0.3); color: var(--amber); }
+    .case-result.stopped { background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.2); color: var(--green); }
+    .case-result.succeeded { background: rgba(255,51,51,0.1); border: 1px solid rgba(255,51,51,0.3); color: var(--red); }
+    .case-ai-panel { }
+    .case-ai-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .case-ai-title::before { content: '⚠'; }
+    .what-changed-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255,51,51,0.05);
+      border: 1px solid rgba(255,51,51,0.15);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+    .what-changed-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .what-changed-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+    .what-changed-text strong { color: var(--text); }
+    .death-toll {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: rgba(255,51,51,0.08);
+      border-left: 3px solid var(--red);
+      border-radius: 0 8px 8px 0;
+    }
+    .death-toll-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.25rem; }
+    .death-toll-number { font-size: 1.5rem; font-weight: 900; color: var(--red); }
+
+    /* ─── AI MULTIPLIER ─── */
+    #multiplier { background: var(--bg); }
+    .multiplier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .multiplier-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .multiplier-card:hover { border-color: var(--green); transform: translateY(-4px); }
+    .multiplier-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .multiplier-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .multiplier-body { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+    .multiplier-stat {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: rgba(0,255,136,0.06);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .progress-block { margin-bottom: 2rem; }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+    .progress-label .val { color: var(--green); font-weight: 700; }
+    .progress-bar-bg {
+      height: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green-dim), var(--green));
+      border-radius: 4px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+    .progress-bar-fill.red { background: linear-gradient(90deg, var(--red-dim), var(--red)); }
+    .quote-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 2rem;
+      margin: 1.5rem 0;
+    }
+    .quote-text { font-size: 1.1rem; font-style: italic; line-height: 1.7; margin-bottom: 1rem; }
+    .quote-author { font-size: 0.85rem; color: var(--green); font-weight: 600; letter-spacing: 0.05em; }
+
+    /* ─── THREAT MATRIX ─── */
+    #threats { background: var(--bg2); }
+    .threat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .threat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .threat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    .threat-header {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .threat-emoji { font-size: 2rem; }
+    .threat-name { font-size: 1.1rem; font-weight: 700; }
+    .threat-scientific { font-size: 0.75rem; color: var(--text-dim); font-style: italic; }
+    .risk-badge {
+      margin-left: auto;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .risk-low { background: rgba(255,170,0,0.15); color: var(--amber); border: 1px solid rgba(255,170,0,0.3); }
+    .risk-medium { background: rgba(255,100,0,0.15); color: #ff6400; border: 1px solid rgba(255,100,0,0.3); }
+    .risk-high { background: rgba(255,51,51,0.15); color: var(--red); border: 1px solid rgba(255,51,51,0.3); }
+    .risk-critical { background: rgba(200,0,255,0.15); color: #cc00ff; border: 1px solid rgba(200,0,255,0.3); }
+    .threat-body { padding: 1.5rem; }
+    .threat-stat-row { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .threat-stat { text-align: center; flex: 1; }
+    .threat-stat-val { font-size: 1.3rem; font-weight: 800; color: var(--red); }
+    .threat-stat-key { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+    .threat-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
+    .threat-expand { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .threat-card.open .threat-expand { max-height: 300px; }
+    .threat-expand-inner { padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+    .threat-expand-inner p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 0.5rem; }
+
+    /* ─── EXPERTS SECTION ─── */
+    #experts { background: var(--bg); }
+    .experts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .expert-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+    .expert-card:hover { border-color: var(--green); }
+    .expert-quote { font-size: 1rem; font-style: italic; line-height: 1.7; margin-bottom: 1.5rem; color: var(--text); }
+    .expert-quote::before { content: '"'; color: var(--green); font-size: 2rem; line-height: 0; vertical-align: -0.5rem; margin-right: 0.2rem; }
+    .expert-name { font-weight: 700; font-size: 0.9rem; color: var(--green); }
+    .expert-role { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.2rem; }
+
+    /* ─── URGENCY SECTION ─── */
+    #urgency { background: var(--bg2); }
+    .urgency-list { list-style: none; }
+    .urgency-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .urgency-item:last-child { border-bottom: none; }
+    .urgency-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--red);
+      opacity: 0.4;
+      flex-shrink: 0;
+      width: 3rem;
+    }
+    .urgency-content {}
+    .urgency-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .urgency-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+
+    /* ─── WHAT YOU CAN DO ─── */
+    #action {
+      background: var(--bg);
+      text-align: center;
+    }
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+      text-align: left;
+    }
+    .action-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .action-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .action-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .action-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
+    .action-link {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--green);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+    .action-link::after { content: ' →'; }
+    .action-link:hover { text-decoration: underline; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo { font-size: 1.5rem; font-weight: 900; color: var(--green); margin-bottom: 1rem; }
+    .footer-note { font-size: 0.8rem; color: var(--text-dim); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+    .footer-note a { color: var(--green); }
+
+    /* ─── MOBILE NAV ─── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+
+    /* ─── COUNTER ANIMATION ─── */
+    .count-up { display: inline-block; }
+
+    /* ─── GLITCH TEXT ─── */
+    .glitch {
+      position: relative;
+    }
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+    }
+    .glitch::before {
+      color: var(--red);
+      animation: glitch1 3s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    }
+    .glitch::after {
+      color: #00aaff;
+      animation: glitch2 3s infinite;
+      clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+    }
+    @keyframes glitch1 {
+      0%,95%,100% { transform: translate(0); }
+      96% { transform: translate(-3px, 1px); }
+      97% { transform: translate(3px, -1px); }
+      98% { transform: translate(-3px, 0); }
+    }
+    @keyframes glitch2 {
+      0%,95%,100% { transform: translate(0); }
+      96% { transform: translate(3px, 1px); }
+      97% { transform: translate(-3px, -1px); }
+      98% { transform: translate(3px, 0); }
+    }
+
+    /* ─── BARRIER VISUALIZER ─── */
+    .barrier-visual {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    .barrier-title { font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; color: var(--text-dim); letter-spacing: 0.05em; }
+    .barrier-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .barrier-label { width: 180px; font-size: 0.85rem; color: var(--text-dim); text-align: right; flex-shrink: 0; }
+    .barrier-track { flex: 1; height: 10px; background: rgba(255,255,255,0.06); border-radius: 5px; position: relative; overflow: visible; }
+    .barrier-before {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #1a4433, var(--green));
+      position: absolute;
+      top: 0; left: 0;
+      transition: width 1.5s ease;
+      width: 0;
+    }
+    .barrier-after {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #4a0f0f, var(--red));
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      transition: width 1.5s ease 0.3s, opacity 0.5s ease 0.3s;
+      width: 0;
+    }
+    .barrier-legend { display: flex; gap: 2rem; justify-content: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-dim); }
+    .barrier-legend span { display: flex; align-items: center; gap: 0.4rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot.green { background: var(--green); }
+    .dot.red { background: var(--red); }
+    @media (max-width: 600px) { .barrier-label { width: 100px; font-size: 0.75rem; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <span class="nav-logo">☣ bioweapon.ai</span>
+  <ul class="nav-links">
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#multiplier">AI Risk</a></li>
+    <li><a href="#threats">Threats</a></li>
+    <li><a href="#experts">Experts</a></li>
+    <li><a href="#action">Act Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-content">
+    <span class="biohazard-symbol">☣</span>
+    <p class="hero-eyebrow">An Urgent Briefing on Existential Risk</p>
+    <h1 class="hero-title">
+      <span class="glitch" data-text="AI is making">AI is making</span><br>
+      <span class="highlight">biological weapons</span><br>
+      accessible to <span class="danger">anyone.</span>
+    </h1>
+    <p class="hero-subtitle">
+      For decades, catastrophic bioterrorism was blocked by a single barrier:
+      you needed to be an expert. Artificial intelligence is eliminating that barrier —
+      quietly, rapidly, and right now.
+    </p>
+    <a href="#problem" class="cta-btn">Understand the Risk</a>
+  </div>
+  <div class="scroll-hint">▼ scroll to learn more</div>
+</section>
+
+<!-- STATS BAR -->
+<div id="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number green count-up" data-target="94">0</span><span class="stat-number green">%</span>
+        <span class="stat-label">of virology experts outperformed by AI on lab protocol questions</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number amber count-up" data-target="253">0</span><span class="stat-number amber">%</span>
+        <span class="stat-label">performance uplift AI gives non-experts in bioweapons acquisition</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number red count-up" data-target="80">0</span><span class="stat-number red">%</span>
+        <span class="stat-label">accuracy of LLMs on bioweapon-release questions (up from 15% in 2023)</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number red">3M</span>
+        <span class="stat-label">potential casualties from a single aerosolized anthrax attack on a US city</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <p class="section-eyebrow reveal">The Core Problem</p>
+    <h2 class="section-title reveal">The Expert Barrier is <span style="color:var(--red)">Collapsing</span></h2>
+    <p class="section-desc reveal">
+      Every major bioterror attack in history was either carried out by trained experts
+      or failed due to technical incompetence. AI removes the incompetence.
+      It democratizes expertise — including the kind that kills millions.
+    </p>
+
+    <div class="two-col reveal">
+      <div class="col-card">
+        <span class="col-card-icon">🔬</span>
+        <div class="col-card-title green">Before AI: High Barriers</div>
+        <ul>
+          <li>Needed PhD-level virology expertise</li>
+          <li>Required access to specialized labs</li>
+          <li>Technical failures were common and fatal to plots</li>
+          <li>Equipment was expensive and rare</li>
+          <li>Secrecy conflicted with needing expert collaborators</li>
+          <li>Dispersal methods required engineering expertise</li>
+        </ul>
+      </div>
+      <div class="col-card danger">
+        <span class="col-card-icon">🤖</span>
+        <div class="col-card-title">After AI: Barriers Eliminated</div>
+        <ul>
+          <li>AI outperforms 94% of expert virologists on protocols</li>
+          <li>Expert troubleshooting available instantly, anonymously</li>
+          <li>Technical mistakes correctable in real time by AI</li>
+          <li>Lab equipment now commercially available and affordable</li>
+          <li>Secrecy preserved — no human expert accomplices needed</li>
+          <li>Drone dispersal technology widely available commercially</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="barrier-visual reveal">
+      <div class="barrier-title">HOW AI CHANGES THE BARRIER TO CATASTROPHIC HARM — REQUIRED EXPERTISE LEVEL</div>
+      <div class="barrier-row">
+        <div class="barrier-label">Pathogen Selection</div>
+        <div class="barrier-track">
+          <div class="barrier-before" data-width="80"></div>
+          <div class="barrier-after" data-width="15"></div>
+        </div>
+      </div>
+      <div class="barrier-row">
+        <div class="barrier-label">Acquisition / Synthesis</div>
+        <div class="barrier-track">
+          <div class="barrier-before" data-width="90"></div>
+          <div class="barrier-after" data-width="35"></div>
+        </div>
+      </div>
+      <div class="barrier-row">
+        <div class="barrier-label">Weaponization</div>
+        <div class="barrier-track">
+          <div class="barrier-before" data-width="95"></div>
+          <div class="barrier-after" data-width="40"></div>
+        </div>
+      </div>
+      <div class="barrier-row">
+        <div class="barrier-label">Dispersal Method</div>
+        <div class="barrier-track">
+          <div class="barrier-before" data-width="75"></div>
+          <div class="barrier-after" data-width="20"></div>
+        </div>
+      </div>
+      <div class="barrier-row">
+        <div class="barrier-label">Evading Detection</div>
+        <div class="barrier-track">
+          <div class="barrier-before" data-width="60"></div>
+          <div class="barrier-after" data-width="10"></div>
+        </div>
+      </div>
+      <div class="barrier-legend">
+        <span><span class="dot green"></span> Before AI (high expertise required)</span>
+        <span><span class="dot red"></span> After AI (dramatically reduced)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="container">
+    <p class="section-eyebrow reveal">Real History</p>
+    <h2 class="section-title reveal">These Attacks Actually Happened</h2>
+    <p class="section-desc reveal">
+      These aren't hypotheticals. They are documented history.
+      The only reason many failed was technical incompetence — the exact gap AI now fills.
+    </p>
+
+    <div class="case-tabs reveal">
+      <button class="case-tab active" onclick="showCase('anthrax')">2001 Anthrax Letters</button>
+      <button class="case-tab" onclick="showCase('rajneeshee')">1984 Rajneeshee</button>
+      <button class="case-tab" onclick="showCase('aum')">Aum Shinrikyo</button>
+      <button class="case-tab" onclick="showCase('cologne')">2018 Cologne Ricin</button>
+      <button class="case-tab" onclick="showCase('isis')">ISIS Bio Program</button>
+    </div>
+
+    <!-- ANTHRAX -->
+    <div class="case-panel active" id="panel-anthrax">
+      <div class="case-card">
+        <div class="case-meta">
+          <div class="case-year">2001 — USA</div>
+          <div class="case-name">The Anthrax Letters</div>
+          <div class="case-description">
+            In the weeks following 9/11, letters containing weaponized anthrax spores
+            were mailed to media outlets and two US senators. The perpetrator, Bruce Ivins,
+            was a veteran Army biological-weapons researcher — one of America's top anthrax experts.
+            <br><br>
+            The spores had been processed with specialized additives to increase their inhalability,
+            requiring highly sophisticated technical knowledge. This was not amateur work.
+          </div>
+          <div class="case-result succeeded">● Attack Succeeded</div>
+          <div class="death-toll">
+            <div class="death-toll-label">Casualties</div>
+            <div class="death-toll-number">5 dead · 17 injured</div>
+          </div>
+        </div>
+        <div class="case-ai-panel">
+          <div class="case-ai-title">What AI Changes About This</div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🧪</div>
+            <div class="what-changed-text"><strong>The expert requirement disappears.</strong> Ivins needed decades of government training to weaponize anthrax effectively. AI can provide equivalent technical guidance to anyone with a basic science background.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🔒</div>
+            <div class="what-changed-text"><strong>Insider threats multiply.</strong> If Ivins — a trusted government scientist — could do this, AI empowers that same threat from far more actors with far less traceable access to expertise.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">📈</div>
+            <div class="what-changed-text"><strong>Scale could be dramatically larger.</strong> Congressional analysis estimates aerosolizing anthrax over Washington D.C. could cause <strong>130,000–3 million casualties</strong>. The 2001 attack was targeted. A mass-casualty attempt is the next step.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAJNEESHEE -->
+    <div class="case-panel" id="panel-rajneeshee">
+      <div class="case-card">
+        <div class="case-meta">
+          <div class="case-year">1984 — Oregon, USA</div>
+          <div class="case-name">The Rajneeshee Bioterror Attack</div>
+          <div class="case-description">
+            Members of the Rajneeshee cult deliberately contaminated salad bars at
+            ten restaurants with Salmonella to incapacitate voters before a local election.
+            They cultivated the bacteria in what authorities described as a
+            "fairly sophisticated medical research laboratory" at their commune.
+            <br><br>
+            The bacteria had been purchased over the counter from a scientific supply house.
+            This remains the largest bioterrorist attack in U.S. history.
+          </div>
+          <div class="case-result succeeded">● Attack Succeeded</div>
+          <div class="death-toll">
+            <div class="death-toll-label">Casualties</div>
+            <div class="death-toll-number">751 poisoned · 45 hospitalized</div>
+          </div>
+        </div>
+        <div class="case-ai-panel">
+          <div class="case-ai-title">What AI Changes About This</div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🦠</div>
+            <div class="what-changed-text"><strong>More lethal agents, lower barrier.</strong> The cult explored using HIV and other lethal pathogens but lacked the expertise. AI fills that knowledge gap, enabling more dangerous pathogens to be used with minimal biological training.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🌐</div>
+            <div class="what-changed-text"><strong>Supply acquisition goes underground.</strong> The cult was caught partly because large orders flagged suppliers. Dark web markets and AI-assisted synthesis routes reduce or eliminate that detection point.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">⚙️</div>
+            <div class="what-changed-text"><strong>Dispersal optimization.</strong> Modern drone technology and AI-optimized delivery could turn a food-contamination attack into a large-scale aerosol event with far greater reach.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUM SHINRIKYO -->
+    <div class="case-panel" id="panel-aum">
+      <div class="case-card">
+        <div class="case-meta">
+          <div class="case-year">1993 — Tokyo, Japan</div>
+          <div class="case-name">Aum Shinrikyo Anthrax Attack</div>
+          <div class="case-description">
+            In July 1993, the Aum Shinrikyo doomsday cult aerosolized anthrax from the roof
+            of an 8-story building in Tokyo, attempting to kill thousands.
+            The attack killed no one — due to a cascade of technical failures.
+            <br><br>
+            They used the wrong strain (a vaccine-grade strain that couldn't cause disease),
+            achieved insufficient spore concentrations, and their aerosolization equipment failed.
+            The cult had full labs, resources, and scientifically trained members — and still couldn't pull it off.
+          </div>
+          <div class="case-result partial">● Attack Failed — Technical Errors</div>
+          <div class="death-toll">
+            <div class="death-toll-label">Intent vs. Outcome</div>
+            <div class="death-toll-number">Thousands targeted · 0 killed</div>
+          </div>
+        </div>
+        <div class="case-ai-panel">
+          <div class="case-ai-title">What AI Would Have Changed</div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🤖</div>
+            <div class="what-changed-text"><strong>Every failure point AI eliminates.</strong> The wrong strain, wrong concentration, wrong dispersal technique — AI would have corrected all three in real time. OpenAI's o3 model outperforms 94% of expert virologists on exactly these types of questions.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🔐</div>
+            <div class="what-changed-text"><strong>No need to involve outside experts.</strong> Aum failed partly because they kept weapons development secret within leadership, limiting their expertise. With AI, secrecy and technical competence are no longer in conflict.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🚁</div>
+            <div class="what-changed-text"><strong>Modern dispersal technology.</strong> Drone-based aerosol dispersal has advanced enormously since 1993. Commercial crop-duster drones are now cheap, precise, and widely available — the equipment failures that doomed Aum are obsolete problems.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLOGNE -->
+    <div class="case-panel" id="panel-cologne">
+      <div class="case-card">
+        <div class="case-meta">
+          <div class="case-year">2018 — Cologne, Germany</div>
+          <div class="case-name">The Cologne Ricin Bomb Plot</div>
+          <div class="case-description">
+            A 29-year-old ISIS sympathizer successfully produced ricin — a biological toxin
+            with no known antidote — and assembled a bomb intended for use in a crowded venue.
+            He ordered 3,300 castor seeds along with explosive components on the internet.
+            <br><br>
+            This was the first time a jihadi terrorist in the West had successfully produced
+            this toxin. He was only caught because the CIA flagged his large castor seed order
+            to German intelligence.
+          </div>
+          <div class="case-result stopped">● Plot Stopped — Surveillance</div>
+          <div class="death-toll">
+            <div class="death-toll-label">Potential at Time of Arrest</div>
+            <div class="death-toll-number">1,000 toxic doses ready</div>
+          </div>
+        </div>
+        <div class="case-ai-panel">
+          <div class="case-ai-title">What AI Changes About This</div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">👤</div>
+            <div class="what-changed-text"><strong>Acquisition goes invisible.</strong> He was caught because of a large internet order. VPNs, Tor, dark web markets, and AI-assisted synthesis guidance using locally available materials would make this surveillance-proof.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">⚗️</div>
+            <div class="what-changed-text"><strong>Production quality improves dramatically.</strong> He produced ricin, but not at professional potency. AI could guide him to optimize for maximum lethality using freely available chemistry knowledge.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">📊</div>
+            <div class="what-changed-text"><strong>Scale is the chilling part.</strong> He built 1,000 doses with basic internet skills. With AI guidance and optimized delivery, a motivated individual could cause mass casualties at a concert, stadium, or transit hub.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ISIS -->
+    <div class="case-panel" id="panel-isis">
+      <div class="case-card">
+        <div class="case-meta">
+          <div class="case-year">2014 — Syria/Iraq</div>
+          <div class="case-name">ISIS "Laptop of Doom"</div>
+          <div class="case-description">
+            A laptop seized from a Tunisian ISIS operative in 2014 contained a
+            comprehensive biological weapons research program. The operative had
+            university-level scientific training.
+            <br><br>
+            The laptop contained a 19-page document in Arabic detailing how to develop
+            and weaponize biological agents for mass-casualty attacks in metro systems,
+            stadiums, and other crowded venues. ISIS was actively working to develop
+            bioweapons with real scientific personnel.
+          </div>
+          <div class="case-result partial">● Program Disrupted</div>
+          <div class="death-toll">
+            <div class="death-toll-label">If Successful</div>
+            <div class="death-toll-number">Mass casualty event in Western city</div>
+          </div>
+        </div>
+        <div class="case-ai-panel">
+          <div class="case-ai-title">What AI Changes About This</div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🌍</div>
+            <div class="what-changed-text"><strong>No need for a trained scientist.</strong> ISIS had to recruit someone with university-level training. With AI, any motivated individual can access equivalent expertise without institutional education or institutional traceability.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">📱</div>
+            <div class="what-changed-text"><strong>Distributed, cell-based operations.</strong> Centralized programs get seized. AI enables fully distributed operations where each cell operates independently with AI as their silent expert — no single point of failure.</div>
+          </div>
+          <div class="what-changed-item">
+            <div class="what-changed-icon">🔬</div>
+            <div class="what-changed-text"><strong>Pathogen engineering becomes accessible.</strong> Synthetic biology techniques increasingly allow pathogen modification without traditional expertise. AI models can guide that process step by step, from design to execution.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI MULTIPLIER -->
+<section id="multiplier">
+  <div class="container">
+    <p class="section-eyebrow reveal">The AI Factor</p>
+    <h2 class="section-title reveal">How AI Multiplies the Threat</h2>
+    <p class="section-desc reveal">
+      This isn't speculation. Leading AI labs have tested their own models and
+      were alarmed enough to classify them as the highest-risk category before public release.
+    </p>
+
+    <div class="multiplier-grid">
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">🧬</div>
+        <div class="multiplier-title">Expert-Level Virology Knowledge</div>
+        <div class="multiplier-body">OpenAI's o3 model outperforms 94% of professional virologists on laboratory protocol questions — including questions directly relevant to their specific specialties. This expertise is available to anyone with an internet connection.</div>
+        <div class="multiplier-stat">94% of experts outperformed (Virology Capabilities Test, 2024)</div>
+      </div>
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">⬆️</div>
+        <div class="multiplier-title">Anthropic's Own Red Team Alarm</div>
+        <div class="multiplier-body">In its internal bioweapons uplift evaluation, Anthropic found that Claude Opus 4 enhanced human performance by 2.53x — enough to trigger its highest internal safety classification, ASL-3, reserved for models that could help non-experts acquire or deploy CBRN weapons.</div>
+        <div class="multiplier-stat">2.53× uplift → ASL-3 safety classification activated</div>
+      </div>
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">📈</div>
+        <div class="multiplier-title">Rapid Capability Acceleration</div>
+        <div class="multiplier-body">In 2024 alone, LLM accuracy on questions about the release of bioweapons jumped from 15% to 80%. Biological AI models' ability to predict how proteins interact with small molecules — relevant to both medicine and weapons — rose from 42% to 90%.</div>
+        <div class="multiplier-stat">15% → 80% accuracy on bioweapon questions in a single year</div>
+      </div>
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">🚁</div>
+        <div class="multiplier-title">New Delivery Technology</div>
+        <div class="multiplier-body">Commercial drones and modern aerosol technologies have fundamentally solved the dispersal problems that caused historical attacks to fail. What required military-grade equipment in the 1990s now costs a few hundred dollars on Amazon.</div>
+        <div class="multiplier-stat">Commercial crop-duster drones: civilian-accessible, AI-guidable</div>
+      </div>
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">🔬</div>
+        <div class="multiplier-title">Synthetic Biology Access</div>
+        <div class="multiplier-body">Synthetic biology techniques allow pathogen creation and modification without traditional microbiology expertise. Gene synthesis costs have dropped 10,000x since 2000. AI can guide this process with specialized knowledge unavailable in textbooks.</div>
+        <div class="multiplier-stat">Gene synthesis costs: 99.99% cheaper since 2000</div>
+      </div>
+      <div class="multiplier-card reveal">
+        <div class="multiplier-icon">🕵️</div>
+        <div class="multiplier-title">Surveillance Evasion</div>
+        <div class="multiplier-body">Modern privacy tools — encrypted communications, Tor, VPNs, dark web procurement, cryptocurrency — mean the online footprints that historically enabled intelligence services to intercept plots are increasingly invisible.</div>
+        <div class="multiplier-stat">Surveillance detection that stopped Cologne plot: increasingly obsolete</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:3rem;">
+      <h3 style="font-size:1.3rem; margin-bottom:1.5rem;">AI Bioweapon Capability — Growth in 2024</h3>
+      <div class="progress-block">
+        <div class="progress-label"><span>LLM accuracy on bioweapon release questions</span><span class="val">80%</span></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill red" data-width="80"></div></div>
+      </div>
+      <div class="progress-block">
+        <div class="progress-label"><span>Protein interaction prediction (relevant to weapon design)</span><span class="val">90%</span></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill red" data-width="90"></div></div>
+      </div>
+      <div class="progress-block">
+        <div class="progress-label"><span>Performance uplift for non-expert bioweapon acquisition</span><span class="val">253%</span></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill red" data-width="85"></div></div>
+      </div>
+      <div class="progress-block">
+        <div class="progress-label"><span>Virologists outperformed by AI on specialized questions</span><span class="val">94%</span></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill red" data-width="94"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREAT MATRIX -->
+<section id="threats">
+  <div class="container">
+    <p class="section-eyebrow reveal">The Threat Landscape</p>
+    <h2 class="section-title reveal">What We're Actually Talking About</h2>
+    <p class="section-desc reveal">
+      These are not movie-plot threats. They are classified by the CDC as highest-priority bioterrorism agents.
+      Click each to understand the scale of harm possible.
+    </p>
+    <div class="threat-grid">
+
+      <div class="threat-card reveal" onclick="toggleThreat(this)">
+        <div class="threat-header">
+          <div class="threat-emoji">🧫</div>
+          <div>
+            <div class="threat-name">Anthrax</div>
+            <div class="threat-scientific">Bacillus anthracis</div>
+          </div>
+          <div class="risk-badge risk-low">Tier 1</div>
+        </div>
+        <div class="threat-body">
+          <div class="threat-stat-row">
+            <div class="threat-stat">
+              <div class="threat-stat-val">3M</div>
+              <div class="threat-stat-key">Max casualties (urban)</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">~80%</div>
+              <div class="threat-stat-key">Untreated mortality</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">Days</div>
+              <div class="threat-stat-key">Survival window</div>
+            </div>
+          </div>
+          <div class="threat-desc">Non-transmissible but environmentally persistent. Tiny spores can be silently released. Congressional analysis: 100kg over Washington D.C. = 130,000–3,000,000 casualties.</div>
+        </div>
+        <div class="threat-expand">
+          <div class="threat-expand-inner">
+            <p><strong style="color:var(--red)">Why AI changes this:</strong> Weaponizing anthrax requires highly specialized knowledge about spore processing. The 2001 attacker was a career government bioweapons researcher. AI provides equivalent guidance to anyone.</p>
+            <p><strong>Detection window:</strong> Symptoms appear 1–5 days post-exposure, often resembling flu. By the time diagnosis is confirmed, exposure may be complete and mass casualty response overwhelmed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="threat-card reveal" onclick="toggleThreat(this)">
+        <div class="threat-header">
+          <div class="threat-emoji">⚗️</div>
+          <div>
+            <div class="threat-name">Botulinum Toxin</div>
+            <div class="threat-scientific">Clostridium botulinum</div>
+          </div>
+          <div class="risk-badge risk-medium">Tier 1</div>
+        </div>
+        <div class="threat-body">
+          <div class="threat-stat-row">
+            <div class="threat-stat">
+              <div class="threat-stat-val">1M+</div>
+              <div class="threat-stat-key">Deaths from 1g inhaled</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">0.9μg</div>
+              <div class="threat-stat-key">Lethal inhaled dose</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">#1</div>
+              <div class="threat-stat-key">Most lethal substance known</div>
+            </div>
+          </div>
+          <div class="threat-desc">The most lethal substance known to science. A single gram evenly dispersed and inhaled can kill over one million people. Can contaminate food or water supplies or be deployed as an aerosol.</div>
+        </div>
+        <div class="threat-expand">
+          <div class="threat-expand-inner">
+            <p><strong style="color:var(--red)">Why AI changes this:</strong> Aum Shinrikyo attempted botulinum attacks and failed due to technical production challenges. AI eliminates those barriers by providing expert-level troubleshooting on production.</p>
+            <p><strong>Scale context:</strong> Aum aerosolized botulinum toxin at multiple locations in Tokyo, including US Navy bases, between 1990–1995. All attempts failed — but with AI, the technical knowledge to succeed is now democratized.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="threat-card reveal" onclick="toggleThreat(this)">
+        <div class="threat-header">
+          <div class="threat-emoji">💀</div>
+          <div>
+            <div class="threat-name">Smallpox</div>
+            <div class="threat-scientific">Variola virus</div>
+          </div>
+          <div class="risk-badge risk-critical">Critical</div>
+        </div>
+        <div class="threat-body">
+          <div class="threat-stat-row">
+            <div class="threat-stat">
+              <div class="threat-stat-val">30–50%</div>
+              <div class="threat-stat-key">Fatality rate</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">~0%</div>
+              <div class="threat-stat-key">Global immunity</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">Billions</div>
+              <div class="threat-stat-key">Potential victims</div>
+            </div>
+          </div>
+          <div class="threat-desc">Eradicated in 1980 — meaning almost no one alive has immunity. 30–50% fatality rate. Only two officially acknowledged stockpiles exist, but security concerns are significant.</div>
+        </div>
+        <div class="threat-expand">
+          <div class="threat-expand-inner">
+            <p><strong style="color:var(--red)">Why AI changes this:</strong> "Using its genetic sequence, someone could make smallpox from scratch today." — Vox. DNA synthesis technology and AI-assisted design make recreating extinct pathogens an increasingly realistic threat.</p>
+            <p><strong>The stockpile problem:</strong> In 2014, six unlabeled freeze-dried vials of smallpox were found in a cardboard box in a storage room at the NIH. They were not in a high-security lab. Unknown origin. Unknown how they got there.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="threat-card reveal" onclick="toggleThreat(this)">
+        <div class="threat-header">
+          <div class="threat-emoji">🦠</div>
+          <div>
+            <div class="threat-name">Engineered Pandemic</div>
+            <div class="threat-scientific">AI-designed pathogen</div>
+          </div>
+          <div class="risk-badge risk-critical">Emerging</div>
+        </div>
+        <div class="threat-body">
+          <div class="threat-stat-row">
+            <div class="threat-stat">
+              <div class="threat-stat-val">Unknown</div>
+              <div class="threat-stat-key">Upper bound</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">2.53×</div>
+              <div class="threat-stat-key">AI uplift (measured)</div>
+            </div>
+            <div class="threat-stat">
+              <div class="threat-stat-val">Now</div>
+              <div class="threat-stat-key">Timeline</div>
+            </div>
+          </div>
+          <div class="threat-desc">Anthropic's chief scientist stated that current AI could help users "synthesize something like COVID or a more dangerous version of the flu." This is not a future concern. It is present-day capability.</div>
+        </div>
+        <div class="threat-expand">
+          <div class="threat-expand-inner">
+            <p><strong style="color:var(--red)">This is why ASL-3 was activated:</strong> Anthropic measured Claude Opus 4's ability to assist bioweapon acquisition and found a 2.53× uplift over baseline human performance. ASL-3 is specifically for AI that could help non-experts deploy CBRN weapons.</p>
+            <p><strong>Dario Amodei's words:</strong> "[AI has the potential to] greatly widen the range of actors with the technical capability to conduct a large-scale biological attack." — CEO, Anthropic, the company that builds Claude.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTS -->
+<section id="experts">
+  <div class="container">
+    <p class="section-eyebrow reveal">Expert Consensus</p>
+    <h2 class="section-title reveal">The People Who Know Are Alarmed</h2>
+    <p class="section-desc reveal">
+      This isn't coming from activists or alarmists. It's coming from the CEOs of the
+      companies building the AI, from former government officials, and from the world's
+      most authoritative safety bodies.
+    </p>
+    <div class="experts-grid">
+      <div class="expert-card reveal">
+        <div class="expert-quote">The biggest issue with AI is actually going to be… its use in biological conflict.</div>
+        <div class="expert-name">Eric Schmidt</div>
+        <div class="expert-role">Former CEO, Google</div>
+      </div>
+      <div class="expert-card reveal">
+        <div class="expert-quote">[AI has the potential to] greatly widen the range of actors with the technical capability to conduct a large-scale biological attack.</div>
+        <div class="expert-name">Dario Amodei</div>
+        <div class="expert-role">CEO, Anthropic (makers of Claude AI)</div>
+      </div>
+      <div class="expert-card reveal">
+        <div class="expert-quote">Notable advances are LLMs' accuracy in answering questions about the release of bioweapons, which increased from 15% to 80%, and biological AIs' ability to predict how proteins interact with small molecules, which increased from 42% to 90% during 2024.</div>
+        <div class="expert-name">International AI Safety Report 2024</div>
+        <div class="expert-role">UK Government / 30-nation scientific consensus</div>
+      </div>
+      <div class="expert-card reveal">
+        <div class="expert-quote">Claude Opus 4 could help users synthesize something like COVID or a more dangerous version of the flu — and basically, our modeling suggests that this might be possible.</div>
+        <div class="expert-name">Jared Kaplan</div>
+        <div class="expert-role">Chief Science Officer, Anthropic</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HAVEN'T WE SEEN IT -->
+<section id="urgency">
+  <div class="container">
+    <p class="section-eyebrow reveal">The Critical Question</p>
+    <h2 class="section-title reveal">If It's So Dangerous, Why Hasn't It Happened?</h2>
+    <p class="section-desc reveal">
+      It almost has. Repeatedly. We've been lucky — but luck is not a biosecurity strategy,
+      and the conditions that made us lucky are disappearing.
+    </p>
+    <ul class="urgency-list">
+      <li class="urgency-item reveal">
+        <div class="urgency-num">01</div>
+        <div class="urgency-content">
+          <div class="urgency-title">We've had more near-misses than most people know</div>
+          <div class="urgency-desc">The Aum Shinrikyo cult attempted mass-casualty biological attacks multiple times. An anti-government militia extracted ricin capable of killing 100+ people. A microbiologist with white supremacist ties ordered live bubonic plague to release in the New York subway. An ISIS operative built 1,000 doses of ricin before arrest. These are documented, confirmed cases.</div>
+        </div>
+      </li>
+      <li class="urgency-item reveal">
+        <div class="urgency-num">02</div>
+        <div class="urgency-content">
+          <div class="urgency-title">Technical barriers, not lack of intent, stopped them</div>
+          <div class="urgency-desc">In virtually every case, perpetrators had intent and some capability. What stopped mass casualties was technical failure: wrong bacterial strain, insufficient concentration, poor aerosolization equipment, unreliable surveillance detection. AI is systematically eliminating every one of these failure points.</div>
+        </div>
+      </li>
+      <li class="urgency-item reveal">
+        <div class="urgency-num">03</div>
+        <div class="urgency-content">
+          <div class="urgency-title">The threat landscape has fundamentally shifted — now</div>
+          <div class="urgency-desc">Online research databases now provide unrestricted access to the exact scientific literature that addresses every obstacle past attackers encountered. Lab equipment is commercially available. Synthetic biology tools allow pathogen modification without traditional expertise. Drone delivery is cheap, precise, and civilian-accessible. These changes happened over the last decade.</div>
+        </div>
+      </li>
+      <li class="urgency-item reveal">
+        <div class="urgency-num">04</div>
+        <div class="urgency-content">
+          <div class="urgency-title">AI democratizes the expertise that was the last line of defense</div>
+          <div class="urgency-desc">The single remaining barrier was that weaponization required expert knowledge that was hard to acquire without detection. AI eliminates that barrier entirely. Anthropic measured a 2.53× uplift, enough to trigger their highest safety classification. That capability is already deployed in products millions of people use today.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ACTION -->
+<section id="action">
+  <div class="container">
+    <p class="section-eyebrow reveal">What Comes Next</p>
+    <h2 class="section-title reveal">This Is Solvable. But Not Without Pressure.</h2>
+    <p class="section-desc reveal">
+      Biosecurity experts, AI safety researchers, and policy advocates are working on this —
+      but public awareness is the missing piece. The people making decisions about AI
+      regulation need to know that voters understand what's at stake.
+    </p>
+    <div class="action-grid">
+      <div class="action-card reveal">
+        <div class="action-icon">📢</div>
+        <div class="action-title">Share This</div>
+        <div class="action-desc">The fastest way to create political will is public awareness. Share this page with people who haven't heard of AI biosecurity risks. Tag your representatives. Make this issue visible.</div>
+      </div>
+      <div class="action-card reveal">
+        <div class="action-icon">📋</div>
+        <div class="action-title">Learn from the Experts</div>
+        <div class="action-desc">Organizations like the NTI Biosecurity, Johns Hopkins Center for Health Security, and the Nuclear Threat Initiative publish policy frameworks and research on this exact issue. Read them. Cite them.</div>
+        <a class="action-link" href="https://www.nti.org/about/programs-projects/project/biosecurity/" target="_blank" rel="noopener">NTI Biosecurity Program</a>
+      </div>
+      <div class="action-card reveal">
+        <div class="action-icon">🏛️</div>
+        <div class="action-title">Contact Your Representatives</div>
+        <div class="action-desc">AI biosecurity policy is being made right now. Congress and parliaments worldwide are drafting AI regulation. Demand that biosecurity red-teaming, capability evaluations, and mandatory safeguards are included.</div>
+      </div>
+      <div class="action-card reveal">
+        <div class="action-icon">🔬</div>
+        <div class="action-title">Support Biosecurity Research</div>
+        <div class="action-desc">Defensive biosecurity — better detection, faster vaccines, improved attribution — is underfunded relative to the risk. Organizations working on pandemic preparedness and biodefense need support.</div>
+        <a class="action-link" href="https://www.centerforhealthsecurity.org/" target="_blank" rel="noopener">Johns Hopkins Center for Health Security</a>
+      </div>
+    </div>
+
+    <div style="margin-top:4rem;" class="reveal">
+      <div class="quote-block">
+        <div class="quote-text">We are at a crossroads. The same technology that could help cure diseases could help create them. The difference is governance, oversight, and the choices we make in the next few years — before the capability gap closes permanently.</div>
+        <div class="quote-author">— Based on the research document "Mapping Emergent AI-Aided Biosecurity Risks"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">☣ bioweapon.ai</div>
+  <p class="footer-note">
+    This site presents publicly available research to raise awareness about AI-enabled biosecurity risks.
+    All statistics are sourced from published academic literature, government reports, and public statements by AI company executives.
+    Sources include the <a href="https://www.gov.uk/government/publications/international-ai-safety-report-2025" target="_blank" rel="noopener">International AI Safety Report (2025)</a>,
+    CDC public records, FBI documents, and peer-reviewed virology studies.
+    <br><br>
+    This is an awareness project, not affiliated with any government agency.
+    The goal is informed public discourse on one of the most critical emerging risks of our time.
+  </p>
+</footer>
+
+<script>
+  // ─── PARTICLE CANVAS ───
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function createParticle() {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2.5 + 0.5,
+      opacity: Math.random() * 0.6 + 0.2,
+      pulse: Math.random() * Math.PI * 2,
+    };
+  }
+
+  for (let i = 0; i < 120; i++) particles.push(createParticle());
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.pulse += 0.015;
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      const alpha = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,255,136,${alpha})`;
+      ctx.fill();
+    });
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,255,136,${0.08 * (1 - dist / 100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // ─── SCROLL REVEAL ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ─── COUNT UP ───
+  function countUp(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = Math.floor(current);
+    }, 16);
+  }
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        countUp(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+  // ─── PROGRESS BARS ───
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.progress-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.progress-block').forEach(el => barObserver.observe(el));
+
+  // ─── BARRIER BARS ───
+  const barrierObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.barrier-before').forEach(b => {
+          b.style.width = b.dataset.width + '%';
+        });
+        setTimeout(() => {
+          e.target.querySelectorAll('.barrier-after').forEach(b => {
+            b.style.width = b.dataset.width + '%';
+            b.style.opacity = 0.85;
+          });
+        }, 800);
+        barrierObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const barrierVisual = document.querySelector('.barrier-visual');
+  if (barrierVisual) barrierObserver.observe(barrierVisual);
+
+  // ─── CASE STUDY TABS ───
+  function showCase(id) {
+    document.querySelectorAll('.case-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.case-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ─── THREAT CARD TOGGLE ───
+  function toggleThreat(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.threat-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+
+  // ─── NAVBAR SCROLL ───
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.background = window.scrollY > 50
+      ? 'rgba(6,6,9,0.97)'
+      : 'rgba(6,6,9,0.85)';
+  });
+</script>
+</body>
+</html>
