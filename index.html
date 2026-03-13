@@ -590,6 +590,17 @@
 
     /* ─── COUNTER ANIMATION ─── */
     .count-up { display: inline-block; }
+
+    /* ─── INLINE CITATIONS ─── */
+    .cite {
+      color: var(--green);
+      font-size: 0.75rem;
+      vertical-align: super;
+      text-decoration: none;
+      opacity: 0.7;
+      margin-left: 2px;
+    }
+    .cite:hover { opacity: 1; text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -782,7 +793,7 @@
           </div>
           <div class="what-changed-item">
             <div class="what-changed-icon">📈</div>
-            <div class="what-changed-text"><strong>Scale could be dramatically larger.</strong> Congressional analysis estimates aerosolizing anthrax over Washington D.C. could cause <strong>130,000–3 million casualties</strong>. The 2001 attack was targeted. A mass-casualty attempt is the next step.</div>
+            <div class="what-changed-text"><strong>Scale could be dramatically larger.</strong> Congressional analysis estimates aerosolizing anthrax over Washington D.C. could cause <strong>130,000–3 million casualties</strong>.<a href="https://fas.org/sgp/othergov/doe/lanl/ota-isc-559.pdf" target="_blank" rel="noopener" class="cite">[source]</a> The 2001 attack was targeted. A mass-casualty attempt is the next step.</div>
           </div>
         </div>
       </div>
@@ -884,7 +895,7 @@
           <div class="case-result stopped">● Plot Stopped — Surveillance</div>
           <div class="death-toll">
             <div class="death-toll-label">Potential at Time of Arrest</div>
-            <div class="death-toll-number">1,000 toxic doses ready</div>
+            <div class="death-toll-number">1,000 toxic doses ready<a href="https://www.france24.com/en/20200326-tunisian-handed-ten-years-for-ricin-bomb-plot-in-germany" target="_blank" rel="noopener" class="cite">[source]</a></div>
           </div>
         </div>
         <div class="case-ai-panel">
@@ -961,19 +972,19 @@
       <div class="multiplier-card reveal">
         <div class="multiplier-icon">🧬</div>
         <div class="multiplier-title">Expert-Level Virology Knowledge</div>
-        <div class="multiplier-body">OpenAI's o3 model outperforms 94% of professional virologists on laboratory protocol questions — including questions directly relevant to their specific specialties. This expertise is available to anyone with an internet connection.</div>
+        <div class="multiplier-body">OpenAI's o3 model outperforms 94% of professional virologists on laboratory protocol questions — including questions directly relevant to their specific specialties. This expertise is available to anyone with an internet connection.<a href="https://arxiv.org/abs/2504.16137" target="_blank" rel="noopener" class="cite">[source]</a></div>
         <div class="multiplier-stat">94% of experts outperformed (Virology Capabilities Test, 2024)</div>
       </div>
       <div class="multiplier-card reveal">
         <div class="multiplier-icon">⬆️</div>
         <div class="multiplier-title">Anthropic's Own Red Team Alarm</div>
-        <div class="multiplier-body">In its internal bioweapons uplift evaluation, Anthropic found that Claude Opus 4 enhanced human performance by 2.53x — enough to trigger its highest internal safety classification, ASL-3, reserved for models that could help non-experts acquire or deploy CBRN weapons.</div>
+        <div class="multiplier-body">In its internal bioweapons uplift evaluation, Anthropic found that Claude Opus 4 enhanced human performance by 2.53x<a href="https://www.anthropic.com/activating-asl3-report" target="_blank" rel="noopener" class="cite">[source]</a> — enough to trigger its highest internal safety classification, ASL-3,<a href="https://www.anthropic.com/news/activating-asl3-protections" target="_blank" rel="noopener" class="cite">[source]</a> reserved for models that could help non-experts acquire or deploy CBRN weapons.</div>
         <div class="multiplier-stat">2.53× uplift → ASL-3 safety classification activated</div>
       </div>
       <div class="multiplier-card reveal">
         <div class="multiplier-icon">📈</div>
         <div class="multiplier-title">Rapid Capability Acceleration</div>
-        <div class="multiplier-body">In 2024 alone, LLM accuracy on questions about the release of bioweapons jumped from 15% to 80%. Biological AI models' ability to predict how proteins interact with small molecules — relevant to both medicine and weapons — rose from 42% to 90%.</div>
+        <div class="multiplier-body">In 2024 alone, LLM accuracy on questions about the release of bioweapons jumped from 15% to 80%.<a href="https://www.gov.uk/government/publications/international-ai-safety-report-2025" target="_blank" rel="noopener" class="cite">[source]</a> Biological AI models' ability to predict how proteins interact with small molecules — relevant to both medicine and weapons — rose from 42% to 90%.</div>
         <div class="multiplier-stat">15% → 80% accuracy on bioweapon questions in a single year</div>
       </div>
       <div class="multiplier-card reveal">
@@ -1036,13 +1047,13 @@
       <div class="multiplier-card reveal">
         <div class="multiplier-icon">☠️</div>
         <div class="multiplier-title">MegaSyn: 40,000 Toxic Molecules in 6 Hours</div>
-        <div class="multiplier-body">In 2022, researchers at Collaboration Pharmaceuticals demonstrated that by inverting a drug-safety AI model (designed to filter out toxic molecules), it generated over 40,000 novel toxic compounds — including nerve-agent analogs — in 6 hours on a consumer laptop. This was a proof-of-concept. The capability exists.</div>
+        <div class="multiplier-body">In 2022, researchers at Collaboration Pharmaceuticals demonstrated that by inverting a drug-safety AI model (designed to filter out toxic molecules), it generated over 40,000 novel toxic compounds — including nerve-agent analogs — in 6 hours on a consumer laptop.<a href="https://www.nature.com/articles/s42256-022-00465-9" target="_blank" rel="noopener" class="cite">[source]</a> This was a proof-of-concept. The capability exists.</div>
         <div class="multiplier-stat">40,000 toxic compounds generated in 6 hours — consumer hardware</div>
       </div>
       <div class="multiplier-card reveal">
         <div class="multiplier-icon">🔄</div>
         <div class="multiplier-title">Fine-Tuning Bypasses Safety Filters</div>
-        <div class="multiplier-body">Research on the Evo 2 biological foundation model shows that fine-tuning on related viral sequences can recover restricted biological capabilities within approximately 50 training steps — less than one hour on a single GPU. Safety filters designed into base models can be bypassed by anyone with modest computational resources.</div>
+        <div class="multiplier-body">Research on the Evo 2 biological foundation model shows that fine-tuning on related viral sequences can recover restricted biological capabilities within approximately 50 training steps — less than one hour on a single GPU.<a href="https://arxiv.org/abs/2511.19299" target="_blank" rel="noopener" class="cite">[source]</a> Safety filters designed into base models can be bypassed by anyone with modest computational resources.</div>
         <div class="multiplier-stat">Evo 2: restricted capabilities recovered in &lt;1 GPU-hour</div>
       </div>
       <div class="multiplier-card reveal">
@@ -1106,7 +1117,7 @@
               <div class="threat-stat-key">Survival window</div>
             </div>
           </div>
-          <div class="threat-desc">Non-transmissible but environmentally persistent. Tiny spores can be silently released. Congressional analysis: 100kg over Washington D.C. = 130,000–3,000,000 casualties.</div>
+          <div class="threat-desc">Non-transmissible but environmentally persistent. Tiny spores can be silently released. Congressional analysis: 100kg over Washington D.C. = 130,000–3,000,000 casualties.<a href="https://fas.org/sgp/othergov/doe/lanl/ota-isc-559.pdf" target="_blank" rel="noopener" class="cite">[source]</a></div>
         </div>
         <div class="threat-expand">
           <div class="threat-expand-inner">
@@ -1140,7 +1151,7 @@
               <div class="threat-stat-key">Most lethal substance known</div>
             </div>
           </div>
-          <div class="threat-desc">The most lethal substance known to science. A single gram evenly dispersed and inhaled can kill over one million people. Can contaminate food or water supplies or be deployed as an aerosol.</div>
+          <div class="threat-desc">The most lethal substance known to science. A single gram evenly dispersed and inhaled can kill over one million people.<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3028942/" target="_blank" rel="noopener" class="cite">[source]</a> Can contaminate food or water supplies or be deployed as an aerosol.</div>
         </div>
         <div class="threat-expand">
           <div class="threat-expand-inner">
@@ -1178,8 +1189,8 @@
         </div>
         <div class="threat-expand">
           <div class="threat-expand-inner">
-            <p><strong style="color:var(--red)">Why AI changes this:</strong> "Using its genetic sequence, someone could make smallpox from scratch today." — Vox. DNA synthesis technology and AI-assisted design make recreating extinct pathogens an increasingly realistic threat.</p>
-            <p><strong>The stockpile problem:</strong> In 2014, six unlabeled freeze-dried vials of smallpox were found in a cardboard box in a storage room at the NIH. They were not in a high-security lab. Unknown origin. Unknown how they got there.</p>
+            <p><strong style="color:var(--red)">Why AI changes this:</strong> "Using its genetic sequence, someone could make smallpox from scratch today."<a href="https://www.science.org/content/article/how-canadian-researchers-reconstituted-extinct-poxvirus-100000-using-mail-order-dna" target="_blank" rel="noopener" class="cite">[source]</a> DNA synthesis technology and AI-assisted design make recreating extinct pathogens an increasingly realistic threat.</p>
+            <p><strong>The stockpile problem:</strong> In 2014, six unlabeled freeze-dried vials of smallpox were found in a cardboard box in a storage room at the NIH.<a href="https://www.science.org/content/article/six-vials-smallpox-discovered-us-lab" target="_blank" rel="noopener" class="cite">[source]</a> They were not in a high-security lab. Unknown origin. Unknown how they got there.</p>
           </div>
         </div>
       </div>
@@ -1208,12 +1219,12 @@
               <div class="threat-stat-key">Timeline</div>
             </div>
           </div>
-          <div class="threat-desc">Anthropic's chief scientist stated that current AI could help users "synthesize something like COVID or a more dangerous version of the flu." This is not a future concern. It is present-day capability.</div>
+          <div class="threat-desc">Anthropic's chief scientist stated that current AI could help users "synthesize something like COVID or a more dangerous version of the flu."<a href="https://time.com/7287806/anthropic-claude-4-opus-safety-bio-risk/" target="_blank" rel="noopener" class="cite">[source]</a> This is not a future concern. It is present-day capability.</div>
         </div>
         <div class="threat-expand">
           <div class="threat-expand-inner">
             <p><strong style="color:var(--red)">This is why ASL-3 was activated:</strong> Anthropic measured Claude Opus 4's ability to assist bioweapon acquisition and found a 2.53× uplift over baseline human performance. ASL-3 is specifically for AI that could help non-experts deploy CBRN weapons.</p>
-            <p><strong>Dario Amodei's words:</strong> "[AI has the potential to] greatly widen the range of actors with the technical capability to conduct a large-scale biological attack." — CEO, Anthropic, the company that builds Claude.</p>
+            <p><strong>Dario Amodei's words:</strong> "[AI has the potential to] greatly widen the range of actors with the technical capability to conduct a large-scale biological attack."<a href="https://www.judiciary.senate.gov/imo/media/doc/2023-07-26_-_testimony_-_amodei.pdf" target="_blank" rel="noopener" class="cite">[source]</a> — CEO, Anthropic, the company that builds Claude.</p>
           </div>
         </div>
       </div>
@@ -1234,22 +1245,22 @@
     </p>
     <div class="experts-grid">
       <div class="expert-card reveal">
-        <div class="expert-quote">The biggest issue with AI is actually going to be… its use in biological conflict.</div>
+        <div class="expert-quote">The biggest issue with AI is actually going to be… its use in biological conflict.<a href="https://www.washingtontimes.com/news/2022/sep/12/ai-powered-biological-warfare-biggest-issue-former/" target="_blank" rel="noopener" class="cite">[source]</a></div>
         <div class="expert-name">Eric Schmidt</div>
         <div class="expert-role">Former CEO, Google</div>
       </div>
       <div class="expert-card reveal">
-        <div class="expert-quote">[AI has the potential to] greatly widen the range of actors with the technical capability to conduct a large-scale biological attack.</div>
+        <div class="expert-quote">[AI has the potential to] greatly widen the range of actors with the technical capability to conduct a large-scale biological attack.<a href="https://www.judiciary.senate.gov/imo/media/doc/2023-07-26_-_testimony_-_amodei.pdf" target="_blank" rel="noopener" class="cite">[source]</a></div>
         <div class="expert-name">Dario Amodei</div>
         <div class="expert-role">CEO, Anthropic (makers of Claude AI)</div>
       </div>
       <div class="expert-card reveal">
-        <div class="expert-quote">Notable advances are LLMs' accuracy in answering questions about the release of bioweapons, which increased from 15% to 80%, and biological AIs' ability to predict how proteins interact with small molecules, which increased from 42% to 90% during 2024.</div>
+        <div class="expert-quote">Notable advances are LLMs' accuracy in answering questions about the release of bioweapons, which increased from 15% to 80%, and biological AIs' ability to predict how proteins interact with small molecules, which increased from 42% to 90% during 2024.<a href="https://www.gov.uk/government/publications/international-ai-safety-report-2025" target="_blank" rel="noopener" class="cite">[source]</a></div>
         <div class="expert-name">International AI Safety Report 2024</div>
         <div class="expert-role">UK Government / 30-nation scientific consensus</div>
       </div>
       <div class="expert-card reveal">
-        <div class="expert-quote">Claude Opus 4 could help users synthesize something like COVID or a more dangerous version of the flu — and basically, our modeling suggests that this might be possible.</div>
+        <div class="expert-quote">Claude Opus 4 could help users synthesize something like COVID or a more dangerous version of the flu — and basically, our modeling suggests that this might be possible.<a href="https://time.com/7287806/anthropic-claude-4-opus-safety-bio-risk/" target="_blank" rel="noopener" class="cite">[source]</a></div>
         <div class="expert-name">Jared Kaplan</div>
         <div class="expert-role">Chief Science Officer, Anthropic</div>
       </div>
