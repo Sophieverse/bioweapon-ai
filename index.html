@@ -206,7 +206,7 @@
       font-weight: 900;
       color: var(--green);
       line-height: 1;
-      display: block;
+      display: inline;
     }
     .stat-number.red { color: var(--red); }
     .stat-number.amber { color: var(--amber); }
@@ -645,7 +645,7 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item reveal">
-        <span class="stat-number green count-up" data-target="94">0</span><span class="stat-number green">%</span>
+        <div><span class="stat-number green count-up" data-target="94">0</span><span class="stat-number green">%</span></div>
         <span class="stat-label">Of virology experts outperformed by AI on lab protocol questions</span>
       </div>
       <div class="stat-item reveal">
@@ -653,7 +653,7 @@
         <span class="stat-label">Safety classification triggered by Claude Opus 4's CBRN capabilities — Anthropic's highest risk tier</span>
       </div>
       <div class="stat-item reveal">
-        <span class="stat-number red count-up" data-target="80">0</span><span class="stat-number red">%</span>
+        <div><span class="stat-number red count-up" data-target="80">0</span><span class="stat-number red">%</span></div>
         <span class="stat-label">Accuracy of LLMs on bioweapon-release questions (up from 15% in 2023)</span>
       </div>
       <div class="stat-item reveal">
