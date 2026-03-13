@@ -108,20 +108,22 @@
     }
     .cta-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,255,136,0.4); }
     .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #ffffff;
-      font-size: 0.8rem;
+      display: inline-block;
+      margin-top: 1.2rem;
+      color: #000000;
+      font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       z-index: 1;
+      background: var(--green);
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
       animation: bounce 2s ease-in-out infinite;
+      font-weight: 600;
     }
     @keyframes bounce {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
     }
 
     /* ─── NAV ─── */
@@ -636,8 +638,9 @@
       quietly, rapidly, and right now.
     </p>
     <a href="#problem" class="cta-btn">Understand the Risk</a>
+    <br>
+    <a href="#problem" class="scroll-hint">▼ scroll to learn more</a>
   </div>
-  <div class="scroll-hint">▼ scroll to learn more</div>
 </section>
 
 <!-- STATS BAR -->
